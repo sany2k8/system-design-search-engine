@@ -14,7 +14,7 @@ A modern React-based web application for exploring 200 system design mini projec
 
 ## Project UI
 
-![Project_UI](./Project_UI.png)
+![Project UI](./Project_UI.png)
 
 ## Tech Stack
 
