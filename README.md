@@ -11,6 +11,11 @@ A modern React-based web application for exploring 200 system design mini projec
 🎨 **Dark Mode Support** - Automatic theme based on system preferences  
 📋 **Easy Copy** - One-click to copy full project prompts to clipboard  
 
+
+## Project UI
+
+![Project_UI](./Project_UI.png)
+
 ## Tech Stack
 
 - **React 18** - UI library with hooks
