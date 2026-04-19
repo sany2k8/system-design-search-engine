@@ -1,0 +1,58 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-surface-950 text-surface-200 antialiased font-sans selection:bg-accent-glow selection:text-accent-light;
+    /* Ambient background gradient */
+    background-image: 
+      radial-gradient(circle at 15% 50%, rgba(99, 102, 241, 0.08) 0%, transparent 50%),
+      radial-gradient(circle at 85% 30%, rgba(168, 85, 247, 0.08) 0%, transparent 50%);
+    background-attachment: fixed;
+  }
+}
+
+@layer utilities {
+  .glass-panel {
+    @apply bg-surface-900/50 backdrop-blur-xl border border-surface-800/60 shadow-xl;
+  }
+  
+  .glass-card {
+    @apply bg-surface-900/40 backdrop-blur-md border border-surface-800/80 shadow-lg hover:border-surface-600/60 hover:shadow-accent-glow/20 hover:-translate-y-1 transition-all duration-300;
+  }
+
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-white via-surface-100 to-surface-400;
+  }
+
+  .text-gradient-accent {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-accent-light to-purple-400;
+  }
+
+  /* Hide scrollbar but allow scrolling */
+  .hide-scrollbar {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none; /* Chrome, Safari and Opera */
+  }
+
+  /* Custom elegant scrollbar for main areas */
+  .custom-scrollbar::-webkit-scrollbar {
+    height: 6px;
+    width: 6px;
+  }
+  .custom-scrollbar::-webkit-scrollbar-track {
+    @apply bg-transparent;
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    @apply bg-surface-800 rounded-full hover:bg-surface-600 transition-colors;
+  }
+}
+
+/* Base styles for the markdown-like prompt rendering */
+.prose-code {
+  @apply font-mono text-[13px] bg-surface-950/80 text-surface-300 p-3 rounded-lg border border-surface-800/50 block w-full overflow-x-auto custom-scrollbar my-2 whitespace-pre-wrap leading-relaxed;
+}

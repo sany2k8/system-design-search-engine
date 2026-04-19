@@ -4,7 +4,7 @@ A modern React-based web application for exploring 200 system design mini projec
 
 ## Features
 
-✨ **200 Practical System Design Projects** - Each with detailed prompts and technology stacks  
+✨ **Practical System Design Projects** - Each with detailed prompts and technology stacks  
 🔍 **Advanced Search** - Full-text search across project titles, stacks, categories, and descriptions  
 🏷️ **Smart Filtering** - Filter by 8 categories: Infrastructure, Database, Auth & Security, Performance, Distributed Systems, Messaging, Observability, and API Design  
 📱 **Fully Responsive** - Works seamlessly on desktop, tablet, and mobile devices  
