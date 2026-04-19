@@ -1,6 +1,6 @@
 # System Design Mini Projects Explorer
 
-A modern React-based web application for exploring 200 system design mini projects with detailed prompts, stacks, and implementation guides.
+A modern React-based web application for exploring system design mini projects with detailed prompts, stacks, and implementation guides.
 
 ## Features
 
