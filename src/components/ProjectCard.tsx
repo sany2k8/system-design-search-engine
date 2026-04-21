@@ -42,17 +42,17 @@ export default function ProjectCard({ project }: ProjectCardProps) {
       </div>
 
       {/* Content area */}
-      <div className="p-3 flex-1 flex flex-col min-h-0 bg-surface-900/20 max-h-[140px]">
+      <div className="p-3 flex-1 flex flex-col min-h-0 bg-surface-100 dark:bg-surface-900/20 max-h-[140px]">
         <div className="flex-1 overflow-y-auto custom-scrollbar pr-1 -mr-1 mb-2">
-          <div className="text-[12px] text-surface-300 leading-snug font-sans">
+          <div className="text-[12px] text-surface-700 dark:text-surface-300 leading-snug font-sans">
             {project.prompt}
           </div>
         </div>
         
-        <div className="pt-2 border-t border-surface-800/60 flex items-center justify-between mt-auto shrink-0">
+        <div className="pt-2 border-t border-surface-300 dark:border-surface-800/60 flex items-center justify-between mt-auto shrink-0">
           <button
             onClick={handleCopyPrompt}
-            className="w-full flex items-center justify-center gap-1.5 py-1.5 px-3 rounded-lg bg-surface-800 hover:bg-surface-700 text-surface-200 border border-surface-700 hover:border-surface-600 transition-all font-semibold text-[11px] font-sans focus:outline-none focus:ring-2 focus:ring-accent-light/50"
+            className="w-full flex items-center justify-center gap-1.5 py-1.5 px-3 rounded-lg bg-surface-200 dark:bg-surface-800 hover:bg-surface-300 dark:hover:bg-surface-700 text-surface-800 dark:text-surface-200 border border-surface-300 dark:border-surface-700 hover:border-surface-400 dark:hover:border-surface-600 transition-all font-semibold text-[11px] font-sans focus:outline-none focus:ring-2 focus:ring-accent-light/50"
           >
             <svg className="w-4 h-4 opacity-70" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3" />

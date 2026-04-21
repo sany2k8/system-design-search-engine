@@ -4,6 +4,8 @@ import { PROJECTS, CATEGORIES } from './data';
 import ProjectCard from './components/ProjectCard';
 import SearchBar from './components/SearchBar';
 import FilterButtons from './components/FilterButtons';
+import ThemeToggle from './components/ThemeToggle';
+import { ThemeProvider } from './contexts/ThemeContext';
 
 function App() {
   const [searchQuery, setSearchQuery] = useState('');
@@ -21,7 +23,6 @@ function App() {
       scrollRef.current.scrollTo({ top: scrollRef.current.scrollHeight, behavior: 'auto' });
     }
   };
-
 
   const filtered = useMemo(() => {
     return PROJECTS.filter(project => {
@@ -44,19 +45,23 @@ function App() {
   // or a horizontal snap-scroll flexbox. A wide responsive grid makes the most use of the full page.
   
   return (
-    <div className="min-h-screen flex flex-col bg-surface-950 font-sans selection:bg-accent-glow selection:text-white">
+    <ThemeProvider>
+      <div className="min-h-screen flex flex-col bg-white dark:bg-surface-950 font-sans selection:bg-accent-glow selection:text-white">
       {/* Background ambient elements */}
       <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden">
-        <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] rounded-full bg-accent-glow blur-[120px] mix-blend-screen"></div>
-        <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] rounded-full bg-purple-500/10 blur-[120px] mix-blend-screen"></div>
+        <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] rounded-full bg-accent-glow blur-[120px] mix-blend-screen dark:mix-blend-screen"></div>
+        <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] rounded-full bg-purple-500/10 blur-[120px] mix-blend-screen dark:mix-blend-screen"></div>
       </div>
+
+      {/* Theme Toggle Button */}
+      <ThemeToggle />
 
       {/* GitHub Link Button - Top Right */}
       <a 
         href="https://github.com/sany2k8" 
         target="_blank" 
         rel="noopener noreferrer"
-        className="fixed top-6 right-6 z-50 p-2.5 rounded-xl glass-panel text-surface-400 hover:text-white hover:border-surface-600 transition-all duration-300 group shadow-2xl"
+        className="fixed top-6 right-6 z-50 p-2.5 rounded-xl glass-panel text-surface-600 dark:text-surface-400 hover:text-gray-900 dark:hover:text-white hover:border-surface-600 transition-all duration-300 group shadow-2xl"
         title="View on GitHub"
       >
         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="group-hover:scale-110 transition-transform">
@@ -69,7 +74,7 @@ function App() {
       <div className="fixed right-6 top-1/2 -translate-y-1/2 z-50 flex flex-col gap-3">
         <button 
           onClick={scrollToTop}
-          className="p-3 rounded-full glass-panel text-surface-400 hover:text-white hover:border-surface-600 transition-all shadow-xl group"
+          className="p-3 rounded-full glass-panel text-surface-600 dark:text-surface-400 hover:text-gray-900 dark:hover:text-white hover:border-surface-600 transition-all shadow-xl group"
           title="Scroll to Top"
         >
           <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="group-hover:-translate-y-0.5 transition-transform">
@@ -78,7 +83,7 @@ function App() {
         </button>
         <button 
           onClick={scrollToBottom}
-          className="p-3 rounded-full glass-panel text-surface-400 hover:text-white hover:border-surface-600 transition-all shadow-xl group"
+          className="p-3 rounded-full glass-panel text-surface-600 dark:text-surface-400 hover:text-gray-900 dark:hover:text-white hover:border-surface-600 transition-all shadow-xl group"
           title="Scroll to Bottom"
         >
           <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="group-hover:translate-y-0.5 transition-transform">
@@ -96,10 +101,10 @@ function App() {
             <span className="px-2 py-0.5 text-[10px] font-semibold text-accent-light tracking-wide uppercase">v2.0 Explorer</span>
           </div> */}
           <h1 className="text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight mb-2">
-            <span className="text-white">System Design</span> <span className="text-gradient-accent text-2xl md:text-3xl lg:text-4xl">Mini Projects</span>
+            <span className="text-gray-900 dark:text-white">System Design</span> <span className="text-gradient-accent text-2xl md:text-3xl lg:text-4xl">Mini Projects</span>
           </h1>
-          <p className="text-surface-400 text-sm md:text-base max-w-2xl font-medium">
-            Discover <strong className="text-white">{PROJECTS.length}</strong> architectural challenges.
+          <p className="text-surface-600 dark:text-surface-400 text-sm md:text-base max-w-2xl font-medium">
+            Discover <strong className="text-gray-900 dark:text-white">{PROJECTS.length}</strong> architectural challenges.
           </p>
         </header>
 
@@ -124,11 +129,11 @@ function App() {
           {filtered.length === 0 ? (
             <div className="h-full flex flex-col items-center justify-center text-center p-8 glass-panel rounded-2xl mx-auto max-w-2xl">
               <span className="text-6xl mb-4">🔍</span>
-              <h3 className="text-xl font-bold text-white mb-2">No projects found</h3>
-              <p className="text-surface-400">Try adjusting your search terms or filters.</p>
+              <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">No projects found</h3>
+              <p className="text-surface-600 dark:text-surface-400">Try adjusting your search terms or filters.</p>
               <button 
                 onClick={() => { setSearchQuery(''); setActiveFilter('All'); }}
-                className="mt-6 px-6 py-2 bg-surface-800 hover:bg-surface-700 text-white rounded-lg transition border border-surface-700"
+                className="mt-6 px-6 py-2 bg-surface-100 dark:bg-surface-800 hover:bg-surface-200 dark:hover:bg-surface-700 text-gray-900 dark:text-white rounded-lg transition border border-surface-300 dark:border-surface-700"
               >
                 Clear all filters
               </button>
@@ -151,22 +156,23 @@ function App() {
         </div>
 
         {/* Footer Section */}
-        <footer className="mt-auto pt-6 border-t border-surface-800/50 flex flex-col md:flex-row items-center justify-between gap-4 text-surface-500 text-xs font-medium animate-fade-in shrink-0">
+        <footer className="mt-auto pt-6 border-t border-surface-200 dark:border-surface-800/50 flex flex-col md:flex-row items-center justify-between gap-4 text-surface-600 dark:text-surface-500 text-xs font-medium animate-fade-in shrink-0">
           <div className="flex items-center gap-2">
             <div className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse-soft"></div>
             <span>© {new Date().getFullYear() > 2026 ? `2026 - ${new Date().getFullYear()}` : '2026'} System Design Explorer. All rights reserved.</span>
           </div>
           <div className="flex items-center gap-6">
-            <a href="#" className="hover:text-surface-300 transition-colors">Privacy Policy</a>
-            <a href="#" className="hover:text-surface-300 transition-colors">Terms of Service</a>
-            <a href="https://github.com/sany2k8/system-design-search-engine" target="_blank" rel="noopener noreferrer" className="text-accent-light hover:text-white transition-colors flex items-center gap-1">
+            <a href="#" className="hover:text-surface-900 dark:hover:text-surface-300 transition-colors">Privacy Policy</a>
+            <a href="#" className="hover:text-surface-900 dark:hover:text-surface-300 transition-colors">Terms of Service</a>
+            <a href="https://github.com/sany2k8/system-design-search-engine" target="_blank" rel="noopener noreferrer" className="text-accent-light hover:text-accent transition-colors flex items-center gap-1">
               <span>GitHub Repo</span>
               <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
             </a>
           </div>
         </footer>
       </div>
-    </div>
+      </div>
+    </ThemeProvider>
   );
 }
 
